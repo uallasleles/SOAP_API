@@ -3,7 +3,6 @@
 from spyne import Iterable, Integer, Unicode, rpc, Application, Service
 from spyne.protocol.http import HttpRpc
 from spyne.protocol.json import JsonDocument
-from spyne.protocol.html import HtmlColumnTable
 
 
 class HelloWorldService(Service):
@@ -27,7 +26,7 @@ def create_app(flask_app):
         [HelloWorldService], 'spyne.examples.flask',
         # O protocolo de entrada é definido como HttpRpc para tornar nosso serviço fácil de chamar.
         in_protocol=HttpRpc(validator='soft'),
-        out_protocol=HtmlColumnTable(ignore_wrappers=True),
+        out_protocol=JsonDocument(ignore_wrappers=True),
     )
 
     # Use o gancho `method_call` para passar a configuração do frasco para cada contexto de método de serviço. 
